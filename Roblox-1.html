@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DD商城 ✦ Roblox代售</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a14;
+    --surface: #12121f;
+    --card: #181828;
+    --border: #2a2a45;
+    --accent: #7c4dff;
+    --accent2: #00e5ff;
+    --accent3: #ff6b6b;
+    --gold: #ffd700;
+    --text: #e8e8ff;
+    --muted: #8888aa;
+    --glow: 0 0 24px rgba(124,77,255,0.4);
+    --glow2: 0 0 24px rgba(0,229,255,0.3);
+  }
+
+- { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+background: var(–bg);
+color: var(–text);
+font-family: ‘Noto Sans TC’, sans-serif;
+min-height: 100vh;
+overflow-x: hidden;
+}
+
+body::before {
+content: ‘’;
+position: fixed;
+inset: 0;
+background-image:
+radial-gradient(1px 1px at 10% 15%, rgba(255,255,255,0.6) 0%, transparent 100%),
+radial-gradient(1px 1px at 25% 40%, rgba(255,255,255,0.4) 0%, transparent 100%),
+radial-gradient(1.5px 1.5px at 50% 10%, rgba(255,255,255,0.5) 0%, transparent 100%),
+radial-gradient(1px 1px at 75% 25%, rgba(255,255,255,0.6) 0%, transparent 100%),
+radial-gradient(1px 1px at 90% 60%, rgba(255,255,255,0.3) 0%, transparent 100%),
+radial-gradient(1px 1px at 35% 70%, rgba(255,255,255,0.5) 0%, transparent 100%),
+radial-gradient(1.5px 1.5px at 60% 85%, rgba(255,255,255,0.4) 0%, transparent 100%),
+radial-gradient(1px 1px at 15% 90%, rgba(255,255,255,0.3) 0%, transparent 100%),
+radial-gradient(ellipse at 30% 0%, rgba(124,77,255,0.12) 0%, transparent 60%),
+radial-gradient(ellipse at 80% 100%, rgba(0,229,255,0.08) 0%, transparent 60%);
+pointer-events: none;
+z-index: 0;
+}
+
+.container {
+max-width: 900px;
+margin: 0 auto;
+padding: 0 16px 60px;
+position: relative;
+z-index: 1;
+}
+
+.header {
+text-align: center;
+padding: 48px 0 32px;
+}
+
+.header-badge {
+display: inline-block;
+background: linear-gradient(135deg, rgba(124,77,255,0.2), rgba(0,229,255,0.1));
+border: 1px solid rgba(124,77,255,0.4);
+border-radius: 100px;
+padding: 6px 20px;
+font-size: 12px;
+color: var(–accent2);
+letter-spacing: 3px;
+text-transform: uppercase;
+margin-bottom: 16px;
+animation: pulse-border 2.5s ease-in-out infinite;
+}
+
+@keyframes pulse-border {
+0%,100%{box-shadow:0 0 0 0 rgba(124,77,255,0.3);}
+50%{box-shadow:0 0 0 6px rgba(124,77,255,0);}
+}
+
+.logo {
+font-family: ‘Orbitron’, sans-serif;
+font-size: clamp(42px, 10vw, 72px);
+font-weight: 900;
+background: linear-gradient(135deg, #fff 0%, var(–accent2) 40%, var(–accent) 100%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+line-height: 1;
+animation: logo-glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes logo-glow {
+from{filter:drop-shadow(0 0 20px rgba(124,77,255,0.4));}
+to{filter:drop-shadow(0 0 40px rgba(0,229,255,0.6));}
+}
+
+.logo-sub {
+font-size: 14px;
+color: var(–muted);
+letter-spacing: 6px;
+margin-top: 8px;
+text-transform: uppercase;
+}
+
+.header-divider {
+width: 200px;
+height: 1px;
+background: linear-gradient(90deg, transparent, var(–accent), var(–accent2), transparent);
+margin: 24px auto;
+}
+
+/* NOTICE */
+.notice-box {
+background: linear-gradient(135deg, rgba(255,107,107,0.08), rgba(255,215,0,0.05));
+border: 1px solid rgba(255,107,107,0.3);
+border-radius: 16px;
+padding: 20px 24px;
+margin-bottom: 32px;
+position: relative;
+overflow: hidden;
+}
+
+.notice-box::before {
+content: ‘’;
+position: absolute;
+top: 0; left: 0; right: 0;
+height: 2px;
+background: linear-gradient(90deg, var(–accent3), var(–gold));
+}
+
+.notice-title {
+font-size: 15px;
+font-weight: 700;
+color: var(–gold);
+margin-bottom: 12px;
+}
+
+.notice-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+
+.notice-list li {
+font-size: 13px;
+color: #ccccee;
+padding-left: 20px;
+position: relative;
+line-height: 1.6;
+}
+
+.notice-list li::before { content: ‘▸’; position: absolute; left: 0; color: var(–accent3); }
+
+/* MAIN TABS */
+.main-tabs {
+display: flex;
+gap: 8px;
+margin-bottom: 28px;
+}
+
+.main-tab-btn {
+flex: 1;
+padding: 12px 16px;
+border: 1px solid var(–border);
+background: var(–surface);
+color: var(–muted);
+border-radius: 12px;
+cursor: pointer;
+font-family: ‘Noto Sans TC’, sans-serif;
+font-size: 13px;
+font-weight: 500;
+transition: all 0.25s ease;
+position: relative;
+overflow: hidden;
+}
+
+.main-tab-btn::before {
+content: ‘’;
+position: absolute;
+inset: 0;
+background: linear-gradient(135deg, var(–accent), var(–accent2));
+opacity: 0;
+transition: opacity 0.25s ease;
+}
+
+.main-tab-btn span { position: relative; z-index: 1; }
+
+.main-tab-btn:hover { border-color: var(–accent); color: var(–text); transform: translateY(-2px); }
+
+.main-tab-btn.active {
+border-color: transparent;
+color: #fff;
+box-shadow: var(–glow);
+transform: translateY(-2px);
+}
+
+.main-tab-btn.active::before { opacity: 1; }
+
+.main-panel { display: none; animation: fadeIn 0.3s ease; }
+.main-panel.active { display: block; }
+
+@keyframes fadeIn {
+from{opacity:0;transform:translateY(8px);}
+to{opacity:1;transform:translateY(0);}
+}
+
+/* GAME LIST */
+.game-list-label {
+font-size: 12px;
+letter-spacing: 3px;
+text-transform: uppercase;
+color: var(–muted);
+margin-bottom: 16px;
+}
+
+.game-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+gap: 14px;
+}
+
+.game-card {
+background: var(–card);
+border: 1px solid var(–border);
+border-radius: 18px;
+padding: 30px 20px 22px;
+cursor: pointer;
+transition: all 0.25s ease;
+text-align: center;
+position: relative;
+overflow: hidden;
+}
+
+.game-card::before {
+content: ‘’;
+position: absolute;
+inset: 0;
+background: linear-gradient(135deg, rgba(124,77,255,0.1), rgba(0,229,255,0.05));
+opacity: 0;
+transition: opacity 0.25s;
+}
+
+.game-card:hover { border-color: var(–accent); transform: translateY(-5px); box-shadow: var(–glow); }
+.game-card:hover::before { opacity: 1; }
+
+.game-icon { font-size: 46px; margin-bottom: 12px; display: block; }
+.game-name { font-size: 16px; font-weight: 700; color: var(–text); margin-bottom: 5px; position: relative; }
+.game-desc { font-size: 12px; color: var(–muted); position: relative; }
+
+.game-tag {
+display: inline-block;
+background: rgba(0,229,255,0.1);
+border: 1px solid rgba(0,229,255,0.25);
+border-radius: 100px;
+padding: 3px 12px;
+font-size: 11px;
+color: var(–accent2);
+margin-top: 10px;
+position: relative;
+}
+
+.game-card.dim { opacity: 0.4; cursor: not-allowed; }
+.game-card.dim:hover { transform: none; box-shadow: none; border-color: var(–border); }
+
+.soon-tag {
+display: inline-block;
+background: rgba(255,107,107,0.1);
+border: 1px solid rgba(255,107,107,0.25);
+border-radius: 100px;
+padding: 3px 12px;
+font-size: 11px;
+color: var(–accent3);
+margin-top: 10px;
+position: relative;
+}
+
+/* BACK */
+.back-btn {
+display: inline-flex;
+align-items: center;
+gap: 8px;
+background: var(–surface);
+border: 1px solid var(–border);
+color: var(–muted);
+border-radius: 10px;
+padding: 9px 18px;
+font-family: ‘Noto Sans TC’, sans-serif;
+font-size: 13px;
+cursor: pointer;
+margin-bottom: 24px;
+transition: all 0.2s;
+}
+
+.back-btn:hover { border-color: var(–accent); color: var(–text); }
+
+/* GAME HEADER BAR */
+.game-header-bar {
+display: flex;
+align-items: center;
+gap: 14px;
+margin-bottom: 28px;
+background: var(–card);
+border: 1px solid var(–border);
+border-radius: 16px;
+padding: 18px 22px;
+}
+
+.game-header-bar .gh-icon { font-size: 36px; }
+.game-header-bar .gh-name { font-size: 19px; font-weight: 900; color: var(–text); }
+.game-header-bar .gh-sub { font-size: 13px; color: var(–muted); margin-top: 3px; }
+
+/* SECTION */
+.section-header {
+display: flex;
+align-items: center;
+gap: 12px;
+margin-bottom: 20px;
+margin-top: 32px;
+}
+
+.section-header:first-of-type { margin-top: 0; }
+
+.section-icon { font-size: 22px; }
+.section-title { font-size: 17px; font-weight: 700; color: var(–text); }
+.section-line { flex: 1; height: 1px; background: linear-gradient(90deg, var(–border), transparent); }
+
+/* PRODUCT CARDS */
+.products-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+gap: 14px;
+margin-bottom: 28px;
+}
+
+.product-card {
+background: var(–card);
+border: 1px solid var(–border);
+border-radius: 16px;
+padding: 20px;
+transition: all 0.25s ease;
+position: relative;
+overflow: hidden;
+}
+
+.product-card::before {
+content: ‘’;
+position: absolute;
+inset: 0;
+background: linear-gradient(135deg, rgba(124,77,255,0.06), rgba(0,229,255,0.03));
+opacity: 0;
+transition: opacity 0.25s;
+}
+
+.product-card:hover { border-color: var(–accent); transform: translateY(-4px); box-shadow: var(–glow); }
+.product-card:hover::before { opacity: 1; }
+
+.product-name { font-size: 15px; font-weight: 700; color: var(–text); margin-bottom: 6px; position: relative; }
+.product-desc { font-size: 12px; color: var(–muted); line-height: 1.6; margin-bottom: 14px; position: relative; }
+
+.product-footer {
+display: flex;
+align-items: center;
+justify-content: space-between;
+position: relative;
+}
+
+.price {
+font-family: ‘Orbitron’, sans-serif;
+font-size: 20px;
+font-weight: 700;
+color: var(–accent2);
+text-shadow: 0 0 12px rgba(0,229,255,0.4);
+}
+
+.price-unit { font-size: 13px; font-weight: 400; color: var(–muted); margin-left: 2px; }
+
+.buy-btn {
+background: linear-gradient(135deg, var(–accent), #5c2fcc);
+border: none;
+border-radius: 8px;
+color: #fff;
+font-family: ‘Noto Sans TC’, sans-serif;
+font-size: 13px;
+font-weight: 700;
+padding: 8px 18px;
+cursor: pointer;
+transition: all 0.2s ease;
+}
+
+.buy-btn:hover {
+background: linear-gradient(135deg, var(–accent2), var(–accent));
+transform: scale(1.05);
+box-shadow: var(–glow2);
+}
+
+/* FEATURED */
+.card-full {
+background: linear-gradient(135deg, #181828, #1a1535);
+border: 1px solid rgba(255,215,0,0.25);
+border-radius: 20px;
+padding: 28px;
+margin-bottom: 14px;
+position: relative;
+overflow: hidden;
+}
+
+.card-full::before {
+content: ‘’;
+position: absolute;
+top: 0; left: 0; right: 0;
+height: 2px;
+background: linear-gradient(90deg, var(–accent), var(–gold), var(–accent2));
+}
+
+.card-full-badge {
+display: inline-block;
+background: linear-gradient(135deg, var(–gold), #cc8800);
+color: #000;
+font-size: 11px;
+font-weight: 900;
+padding: 4px 12px;
+border-radius: 100px;
+letter-spacing: 1px;
+margin-bottom: 14px;
+}
+
+.card-full-name {
+font-size: 22px;
+font-weight: 900;
+color: var(–gold);
+margin-bottom: 16px;
+text-shadow: 0 0 20px rgba(255,215,0,0.3);
+}
+
+.features-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+gap: 10px;
+margin-bottom: 20px;
+}
+
+.feature-item {
+background: rgba(124,77,255,0.08);
+border: 1px solid rgba(124,77,255,0.2);
+border-radius: 10px;
+padding: 10px 14px;
+font-size: 13px;
+color: var(–text);
+}
+
+.feature-item strong {
+color: var(–accent2);
+display: block;
+font-size: 11px;
+margin-bottom: 2px;
+text-transform: uppercase;
+letter-spacing: 1px;
+}
+
+.card-full-footer {
+display: flex;
+align-items: center;
+justify-content: space-between;
+flex-wrap: wrap;
+gap: 12px;
+padding-top: 16px;
+border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.price-big {
+font-family: ‘Orbitron’, sans-serif;
+font-size: 32px;
+font-weight: 900;
+color: var(–gold);
+text-shadow: 0 0 20px rgba(255,215,0,0.5);
+}
+
+/* PAYMENT */
+.payment-card {
+background: var(–card);
+border: 1px solid var(–border);
+border-radius: 16px;
+padding: 24px;
+display: flex;
+flex-direction: column;
+gap: 14px;
+}
+
+.pay-row {
+display: flex;
+align-items: center;
+gap: 14px;
+padding: 12px 16px;
+background: rgba(124,77,255,0.05);
+border-radius: 10px;
+border: 1px solid rgba(124,77,255,0.1);
+}
+
+.pay-icon { font-size: 22px; }
+.pay-label { font-size: 12px; color: var(–muted); margin-bottom: 2px; }
+.pay-value { font-size: 15px; font-weight: 700; color: var(–text); }
+
+.gift-banner {
+background: linear-gradient(135deg, rgba(255,107,107,0.1), rgba(255,215,0,0.08));
+border: 1px solid rgba(255,215,0,0.25);
+border-radius: 12px;
+padding: 14px 18px;
+font-size: 14px;
+color: var(–gold);
+font-weight: 700;
+}
+
+.contact-btn {
+display: block;
+text-align: center;
+background: linear-gradient(135deg, #00b900, #00960a);
+color: #fff;
+font-family: ‘Noto Sans TC’, sans-serif;
+font-size: 16px;
+font-weight: 700;
+padding: 16px;
+border-radius: 14px;
+text-decoration: none;
+transition: all 0.2s ease;
+box-shadow: 0 4px 20px rgba(0,185,0,0.3);
+}
+
+.contact-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(0,185,0,0.4); }
+
+/* MODAL */
+.modal-overlay {
+position: fixed;
+inset: 0;
+background: rgba(0,0,0,0.8);
+backdrop-filter: blur(8px);
+z-index: 100;
+display: flex;
+align-items: center;
+justify-content: center;
+opacity: 0;
+pointer-events: none;
+transition: opacity 0.25s ease;
+padding: 20px;
+}
+
+.modal-overlay.show { opacity: 1; pointer-events: all; }
+
+.modal {
+background: var(–card);
+border: 1px solid var(–accent);
+border-radius: 20px;
+padding: 32px;
+max-width: 400px;
+width: 100%;
+box-shadow: var(–glow);
+transform: scale(0.9);
+transition: transform 0.25s ease;
+text-align: center;
+}
+
+.modal-overlay.show .modal { transform: scale(1); }
+
+.modal-icon { font-size: 48px; margin-bottom: 16px; }
+.modal-title { font-size: 20px; font-weight: 900; margin-bottom: 8px; }
+.modal-sub { font-size: 14px; color: var(–muted); margin-bottom: 24px; line-height: 1.6; }
+
+.modal-line {
+background: rgba(124,77,255,0.1);
+border: 1px solid rgba(124,77,255,0.2);
+border-radius: 10px;
+padding: 14px;
+font-size: 18px;
+font-weight: 700;
+color: var(–accent2);
+margin-bottom: 20px;
+}
+
+.modal-go {
+display: inline-block;
+background: linear-gradient(135deg, #00b900, #00960a);
+color: #fff;
+padding: 12px 28px;
+border-radius: 10px;
+text-decoration: none;
+font-weight: 700;
+font-size: 15px;
+margin-bottom: 12px;
+transition: all 0.2s;
+}
+
+.modal-go:hover { transform: scale(1.05); }
+
+.modal-close {
+background: var(–surface);
+border: 1px solid var(–border);
+color: var(–muted);
+padding: 10px 24px;
+border-radius: 8px;
+cursor: pointer;
+font-family: ‘Noto Sans TC’, sans-serif;
+font-size: 14px;
+transition: all 0.2s;
+display: block;
+margin: 0 auto;
+}
+
+.modal-close:hover { border-color: var(–accent); color: var(–text); }
+
+.footer {
+text-align: center;
+padding: 32px 0 0;
+color: var(–muted);
+font-size: 12px;
+border-top: 1px solid var(–border);
+margin-top: 48px;
+position: relative;
+z-index: 1;
+}
+
+.footer-logo { font-family: ‘Orbitron’, sans-serif; font-size: 16px; color: var(–accent); margin-bottom: 8px; }
+
+@media (max-width: 480px) {
+.products-grid { grid-template-columns: 1fr; }
+.features-grid { grid-template-columns: 1fr 1fr; }
+.game-grid { grid-template-columns: 1fr 1fr; }
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+  <div class="header">
+    <div class="header-badge">✦ ROBLOX 代售平台 ✦</div>
+    <div class="logo">DD商城</div>
+    <div class="logo-sub">Game Items · Fast · Trusted</div>
+    <div class="header-divider"></div>
+  </div>
+
+  <div class="notice-box">
+    <div class="notice-title">⚠️ 購買注意事項</div>
+    <ul class="notice-list">
+      <li>本店為代售服務，<strong>材料包不含代刷</strong>，請確認後再下單。</li>
+      <li>付款方式為 <strong>8591 實收</strong>，請先確認金額再付款，不接受多付或少付。</li>
+      <li>下單前請先透過 LINE 聯繫確認庫存，避免等待。</li>
+      <li>交易完成後<strong>不接受退款</strong>，請謹慎購買，有疑問請先詢問。</li>
+      <li>若有其他需求或未列出的商品，歡迎直接詢問，本店盡量配合。</li>
+      <li>消費滿 <strong>100 元</strong>自動附贈小禮物 🎁，無需額外申請。</li>
+    </ul>
+  </div>
+
+  <div class="main-tabs">
+    <button class="main-tab-btn active" onclick="switchMain('roblox',this)"><span>🎮 Roblox</span></button>
+    <button class="main-tab-btn" onclick="switchMain('payment',this)"><span>💳 購買資訊</span></button>
+  </div>
+
+  <!-- ══ ROBLOX PANEL ══ -->
+
+  <div class="main-panel active" id="main-roblox">
+
+```
+<!-- Step 1: Game list -->
+<div id="view-gamelist">
+  <div class="game-list-label">請選擇遊戲</div>
+  <div class="game-grid">
+
+    <div class="game-card" onclick="openGame('fisch')">
+      <span class="game-icon">🎣</span>
+      <div class="game-name">水手寶石</div>
+      <div class="game-desc">Fisch · 釣魚冒險遊戲</div>
+      <span class="game-tag">✦ 上架中</span>
+    </div>
+
+    <div class="game-card dim">
+      <span class="game-icon">⚔️</span>
+      <div class="game-name">Blox Fruits</div>
+      <div class="game-desc">海賊冒險遊戲</div>
+      <span class="soon-tag">即將上線</span>
+    </div>
+
+    <div class="game-card dim">
+      <span class="game-icon">🏰</span>
+      <div class="game-name">更多遊戲</div>
+      <div class="game-desc">陸續新增中</div>
+      <span class="soon-tag">即將上線</span>
+    </div>
+
+  </div>
+</div>
+
+<!-- Step 2: 水手寶石 shop -->
+<div id="view-fisch" style="display:none">
+
+  <button class="back-btn" onclick="backToGameList()">← 返回遊戲列表</button>
+
+  <div class="game-header-bar">
+    <span class="gh-icon">🎣</span>
+    <div>
+      <div class="gh-name">水手寶石 · Fisch</div>
+      <div class="gh-sub">✨ 遊戲代售服務 · 材料包 / 寶箱 / 帳號</div>
+    </div>
+  </div>
+
+  <!-- 材料包 -->
+  <div class="section-header">
+    <span class="section-icon">🔥</span>
+    <span class="section-title">材料包（含F，不代刷）</span>
+    <div class="section-line"></div>
+  </div>
+  <div class="products-grid">
+    <div class="product-card">
+      <div class="product-name">黑死牟 一套</div>
+      <div class="product-desc">含 F 配件，不含代刷服務</div>
+      <div class="product-footer">
+        <span class="price">120<span class="price-unit">元</span></span>
+        <button class="buy-btn" onclick="openModal('黑死牟一套','120')">立即購買</button>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-name">暗影 v2 一套</div>
+      <div class="product-desc">含 F 配件，不含代刷服務</div>
+      <div class="product-footer">
+        <span class="price">70<span class="price-unit">元</span></span>
+        <button class="buy-btn" onclick="openModal('暗影 v2 一套','70')">立即購買</button>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-name">金閃閃 一套</div>
+      <div class="product-desc">含 F 配件，不含代刷服務</div>
+      <div class="product-footer">
+        <span class="price">30<span class="price-unit">元</span></span>
+        <button class="buy-btn" onclick="openModal('金閃閃一套','30')">立即購買</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 寶箱 -->
+  <div class="section-header">
+    <span class="section-icon">🎁</span>
+    <span class="section-title">寶箱類</span>
+    <div class="section-line"></div>
+  </div>
+  <div class="products-grid">
+    <div class="product-card">
+      <div class="product-name">飾品寶箱</div>
+      <div class="product-desc">開箱獲得隨機飾品</div>
+      <div class="product-footer">
+        <span class="price">5<span class="price-unit">元</span></span>
+        <button class="buy-btn" onclick="openModal('飾品寶箱','5')">立即購買</button>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-name">光環寶箱</div>
+      <div class="product-desc">開箱獲得隨機光環效果</div>
+      <div class="product-footer">
+        <span class="price">5<span class="price-unit">元</span></span>
+        <button class="buy-btn" onclick="openModal('光環寶箱','5')">立即購買</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 滿級帳號 -->
+  <div class="section-header">
+    <span class="section-icon">💎</span>
+    <span class="section-title">滿級帳號（超值套餐）</span>
+    <div class="section-line"></div>
+  </div>
+  <div class="card-full">
+    <div class="card-full-badge">⭐ 超值推薦</div>
+    <div class="card-full-name">💎 滿級帳號 套餐</div>
+    <div class="features-grid">
+      <div class="feature-item"><strong>部落轉換</strong>×1000</div>
+      <div class="feature-item"><strong>種族轉換</strong>×2000</div>
+      <div class="feature-item"><strong>特性轉換</strong>×2000</div>
+      <div class="feature-item"><strong>被動碎片</strong>×200</div>
+      <div class="feature-item"><strong>突襲/塔樓鑰匙</strong>×100</div>
+      <div class="feature-item"><strong>魔王鑰匙</strong>×200</div>
+      <div class="feature-item"><strong>地牢鑰匙</strong>×300</div>
+      <div class="feature-item"><strong>幫晉升</strong>4 階</div>
+    </div>
+    <div class="card-full-footer">
+      <div class="price-big">400<span style="font-size:18px;color:var(--muted);font-weight:400">元</span></div>
+      <button class="buy-btn" style="font-size:15px;padding:12px 28px;" onclick="openModal('滿級帳號套餐','400')">立即購買</button>
+    </div>
+  </div>
+
+  <!-- 單項 -->
+  <div class="section-header">
+    <span class="section-icon">💰</span>
+    <span class="section-title">單項購買</span>
+    <div class="section-line"></div>
+  </div>
+  <div class="products-grid">
+    <div class="product-card">
+      <div class="product-name">部落轉換 1000</div>
+      <div class="product-footer">
+        <span class="price">10<span class="price-unit">元</span></span>
+        <button class="buy-btn" onclick="openModal('部落轉換 x1000','10')">立即購買</button>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-name">種族轉換 4000</div>
+      <div class="product-footer">
+        <span class="price">10<span class="price-unit">元</span></span>
+        <button class="buy-btn" onclick="openModal('種族轉換 x4000','10')">立即購買</button>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-name">特性轉換 3000</div>
+      <div class="product-footer">
+        <span class="price">10<span class="price-unit">元</span></span>
+        <button class="buy-btn" onclick="openModal('特性轉換 x3000','10')">立即購買</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+```
+
+  </div>
+
+  <!-- ══ PAYMENT PANEL ══ -->
+
+  <div class="main-panel" id="main-payment">
+    <div class="section-header" style="margin-top:0">
+      <span class="section-icon">📌</span>
+      <span class="section-title">購買資訊</span>
+      <div class="section-line"></div>
+    </div>
+    <div class="payment-card">
+      <div class="pay-row">
+        <span class="pay-icon">💳</span>
+        <div>
+          <div class="pay-label">支付方式</div>
+          <div class="pay-value">8591（實收）</div>
+        </div>
+      </div>
+      <div class="pay-row">
+        <span class="pay-icon">💬</span>
+        <div>
+          <div class="pay-label">聯絡方式</div>
+          <div class="pay-value">LINE ID：qoieiw</div>
+        </div>
+      </div>
+      <div class="gift-banner">🎁 消費滿 100 元 → 自動附贈小禮物！</div>
+      <div class="pay-row">
+        <span class="pay-icon">📦</span>
+        <div>
+          <div class="pay-label">其他商品</div>
+          <div class="pay-value">未列出商品皆可詢問</div>
+        </div>
+      </div>
+      <a href="https://line.me/ti/p/qoieiw" target="_blank" class="contact-btn">💬 點我加 LINE 購買</a>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <div class="footer-logo">DD商城</div>
+  <div>Roblox 代售平台 · 安全快速 · 歡迎詢問</div>
+  <div style="margin-top:8px;color:#44445a;font-size:11px">© 2025 DD商城 All rights reserved.</div>
+</div>
+
+<!-- MODAL -->
+
+<div class="modal-overlay" id="modal" onclick="closeModalOutside(event)">
+  <div class="modal">
+    <div class="modal-icon">🛒</div>
+    <div class="modal-title">確認購買</div>
+    <div class="modal-sub" id="modal-desc"></div>
+    <div class="modal-line" id="modal-item"></div>
+    <a href="https://line.me/ti/p/qoieiw" target="_blank" class="modal-go">💬 前往 LINE 下單</a>
+    <button class="modal-close" onclick="closeModal()">取消</button>
+  </div>
+</div>
+
+<script>
+  function switchMain(name, btn) {
+    document.querySelectorAll('.main-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.main-tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('main-' + name).classList.add('active');
+    btn.classList.add('active');
+    if (name === 'roblox') backToGameList();
+  }
+
+  function openGame(id) {
+    document.getElementById('view-gamelist').style.display = 'none';
+    const el = document.getElementById('view-' + id);
+    el.style.display = 'block';
+    el.style.animation = 'none';
+    void el.offsetHeight;
+    el.style.animation = 'fadeIn 0.35s ease';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function backToGameList() {
+    document.getElementById('view-fisch').style.display = 'none';
+    document.getElementById('view-gamelist').style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function openModal(item, price) {
+    document.getElementById('modal-item').textContent = item + '  →  ' + price + ' 元';
+    document.getElementById('modal-desc').textContent = '請點下方按鈕前往 LINE 聯繫，告知商品名稱即可完成訂單 😊';
+    document.getElementById('modal').classList.add('show');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    document.getElementById('modal').classList.remove('show');
+    document.body.style.overflow = '';
+  }
+
+  function closeModalOutside(e) {
+    if (e.target === document.getElementById('modal')) closeModal();
+  }
+
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+</script>
+
+</body>
+</html>
